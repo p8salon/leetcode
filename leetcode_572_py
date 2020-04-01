@@ -1,0 +1,44 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if s is None:
+            return False
+        return self.isSametree(s, t) or self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+    def isSametree(self, s:TreeNode, t: TreeNode) -> bool:
+        if s is None and t is None:
+            return True
+        if s is None or t is None:
+            return False
+        if s.val == t.val:
+            return self.isSametree(s.left, t.left) and self.isSametree(s.right, t.right)
+        else:
+            return False
+        # if s is None and t is None:
+        #     return True
+        # elif s is None and t is not None:
+        #     return False
+        # elif s is not None and t is None:
+        #     return False
+        # if s.val != t.val:
+        #     return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+        # else:
+        #     return (self.isSubtree(s.left, t.left) and self.isSubtree(s.right, t.right)) or self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+        # if s.val == t.val:
+        #     return self.isSubtree(s.left, t.left) and self.isSubtree(s.right, t.right)
+        # else:
+        #     return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+        # if s is None and t is not None:
+        #     return False
+        # elif s is not None and t is None:
+        #     return False
+        # elif s is None and t is None:
+        #     return True
+        # else:
+        #     if s.val == t.val:
+        #         return self.isSubtree(s.left, t.left) and self.isSubtree(s.right, t.right)
