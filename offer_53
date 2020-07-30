@@ -1,0 +1,19 @@
+int missingNumber(int* nums, int numsSize){
+    int i = 0;
+    int j = numsSize-1;
+    int n;
+    while(i<=j)
+    {
+        n = (i+j)/2;
+        if(nums[n] != n)
+        {
+            j = n-1;
+        }
+        else
+        {
+            i = n+1;
+        }
+    }
+    
+    return i;
+}
