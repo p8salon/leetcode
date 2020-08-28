@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int len = nums.size();
+        vector<int> maxarr(len);
+        vector<int> minarr(len);
+        
+        int ans = nums[0];
+        maxarr[0] = nums[0];
+        minarr[0] = nums[0];
+        
+        for(int i=1; i<len; i++)
+        {
+            if(nums[i]>0)
+            {
+                maxarr[i] = max(maxarr[i-1]*nums[i], nums[i]);
+                minarr[i] = min(minarr[i-1]*nums[i], nums[i]);
+            }
+            else
+            {
+                maxarr[i] = max(minarr[i-1]*nums[i], nums[i]);
+                minarr[i] = min(maxarr[i-1]*nums[i], nums[i]);
+            }
+            
+            ans = max(ans, maxarr[i]);
+        }
+        return ans;
+    }
+};
