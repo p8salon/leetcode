@@ -1,0 +1,63 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<string> s;
+        int r,l;
+        string str;
+        
+        for(int i=0; i<tokens.size(); i++)
+        {
+            if(tokens[i].size() == 1)
+            {
+                if(tokens[i][0]!='+'&&tokens[i][0]!='-'&&tokens[i][0]!='*'&&tokens[i][0]!='/')
+                {
+                    s.push(tokens[i]);
+                }
+                else
+                {
+                    switch(tokens[i][0])
+                    {
+                        case '+':
+                            r = stoi(s.top());
+                            s.pop();
+                            l = stoi(s.top());
+                            s.pop();
+                            str = to_string(l+r);
+                            s.push(str);
+                            break;
+                        case '-':
+                            r = stoi(s.top());
+                            s.pop();
+                            l = stoi(s.top());
+                            s.pop();
+                            str = to_string(l-r);
+                            s.push(str);
+                            break;
+                        case '*':
+                            r = stoi(s.top());
+                            s.pop();
+                            l = stoi(s.top());
+                            s.pop();
+                            str = to_string(l*r);
+                            s.push(str);
+                            break;
+                        case '/':
+                            r = stoi(s.top());
+                            s.pop();
+                            l = stoi(s.top());
+                            s.pop();
+                            str = to_string(l/r);
+                            s.push(str);
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                s.push(tokens[i]);
+            }
+        }
+        string ret_s = s.top();
+        return stoi(ret_s);
+    }
+};
